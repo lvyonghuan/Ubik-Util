@@ -1,10 +1,11 @@
 package config_test
 
 import (
-	"Ubik-Util/config"
-	"Ubik-Util/uerr"
 	"os"
 	"testing"
+
+	"github.com/lvyonghuan/Ubik-Util/config"
+	"github.com/lvyonghuan/Ubik-Util/uerr"
 )
 
 func TestRead(t *testing.T) {

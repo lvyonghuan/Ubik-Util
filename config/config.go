@@ -1,10 +1,10 @@
 package config
 
 import (
-	"Ubik-Util/uerr"
 	"os"
 
 	jsoniter "github.com/json-iterator/go"
+	"github.com/lvyonghuan/Ubik-Util/uerr"
 )
 
 var json = jsoniter.ConfigCompatibleWithStandardLibrary

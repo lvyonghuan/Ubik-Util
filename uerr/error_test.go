@@ -1,9 +1,10 @@
 package uerr_test
 
 import (
-	"Ubik-Util/uerr"
 	"errors"
 	"testing"
+
+	"github.com/lvyonghuan/Ubik-Util/uerr"
 )
 
 func TestNewUbikError(t *testing.T) {

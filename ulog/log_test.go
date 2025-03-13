@@ -1,10 +1,11 @@
 package ulog_test
 
 import (
-	"Ubik-Util/uerr"
-	"Ubik-Util/ulog"
 	"errors"
 	"testing"
+
+	"github.com/lvyonghuan/Ubik-Util/uerr"
+	"github.com/lvyonghuan/Ubik-Util/ulog"
 )
 
 func TestLogPrint(t *testing.T) {
