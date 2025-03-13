@@ -1,10 +1,10 @@
-package config_test
+package uconfig_test
 
 import (
 	"os"
 	"testing"
 
-	"github.com/lvyonghuan/Ubik-Util/config"
+	"github.com/lvyonghuan/Ubik-Util/uconfig"
 	"github.com/lvyonghuan/Ubik-Util/uerr"
 )
 
@@ -37,7 +37,7 @@ func TestRead(t *testing.T) {
 	}
 
 	// 调用Read函数
-	err = config.Read("test.json", &configData)
+	err = uconfig.Read("test.json", &configData)
 	if err != nil {
 		t.Fatalf("Read function failed: %v", err)
 	}

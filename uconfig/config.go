@@ -1,4 +1,4 @@
-package config
+package uconfig
 
 import (
 	"os"
