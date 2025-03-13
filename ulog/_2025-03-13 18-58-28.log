@@ -1,0 +1,47 @@
+2025-03-13 18:58:28:Debug: test debug
+2025-03-13 18:58:28:test info
+2025-03-13 18:58:28:Warn: test warn
+2025-03-13 18:58:28:Error: test error
+goroutine 7 [running]:
+Ubik-Util/uerr.NewError({0x8308e8, 0xc0000283d0})
+	I:/work/Ubik-Util/uerr/error.go:18 +0x5c
+Ubik-Util/ulog_test.TestLogSave(0xc000003a40?)
+	I:/work/Ubik-Util/ulog/log_test.go:34 +0xb7
+testing.tRunner(0xc000003a40, 0x8030c0)
+	C:/Users/Administrator/go/go1.24.0/src/testing/testing.go:1792 +0xcb
+created by testing.(*T).Run in goroutine 1
+	C:/Users/Administrator/go/go1.24.0/src/testing/testing.go:1851 +0x3f6
+
+goroutine 1 [chan receive]:
+testing.(*T).Run(0xc000003340, {0x7f5a10?, 0x7ffbc49a5f50?}, 0x8030c0)
+	C:/Users/Administrator/go/go1.24.0/src/testing/testing.go:1859 +0x414
+testing.runTests.func1(0xc000003340)
+	C:/Users/Administrator/go/go1.24.0/src/testing/testing.go:2279 +0x37
+testing.tRunner(0xc000003340, 0xc00008fc70)
+	C:/Users/Administrator/go/go1.24.0/src/testing/testing.go:1792 +0xcb
+testing.runTests(0xc000008030, {0x930d40, 0x3, 0x3}, {0x936c80?, 0x7?, 0x0?})
+	C:/Users/Administrator/go/go1.24.0/src/testing/testing.go:2277 +0x4b4
+testing.(*M).Run(0xc0000a8140)
+	C:/Users/Administrat
+2025-03-13 18:58:28:Fatal: test fatal
+goroutine 7 [running]:
+Ubik-Util/uerr.NewError({0x8308e8, 0xc0000283f0})
+	I:/work/Ubik-Util/uerr/error.go:18 +0x5c
+Ubik-Util/ulog_test.TestLogSave(0xc000003a40?)
+	I:/work/Ubik-Util/ulog/log_test.go:35 +0x132
+testing.tRunner(0xc000003a40, 0x8030c0)
+	C:/Users/Administrator/go/go1.24.0/src/testing/testing.go:1792 +0xcb
+created by testing.(*T).Run in goroutine 1
+	C:/Users/Administrator/go/go1.24.0/src/testing/testing.go:1851 +0x3f6
+
+goroutine 1 [chan receive]:
+testing.(*T).Run(0xc000003340, {0x7f5a10?, 0x7ffbc49a5f50?}, 0x8030c0)
+	C:/Users/Administrator/go/go1.24.0/src/testing/testing.go:1859 +0x414
+testing.runTests.func1(0xc000003340)
+	C:/Users/Administrator/go/go1.24.0/src/testing/testing.go:2279 +0x37
+testing.tRunner(0xc000003340, 0xc00008fc70)
+	C:/Users/Administrator/go/go1.24.0/src/testing/testing.go:1792 +0xcb
+testing.runTests(0xc000008030, {0x930d40, 0x3, 0x3}, {0x936c80?, 0x7?, 0x0?})
+	C:/Users/Administrator/go/go1.24.0/src/testing/testing.go:2277 +0x4b4
+testing.(*M).Run(0xc0000a8140)
+	C:/Users/Administra
