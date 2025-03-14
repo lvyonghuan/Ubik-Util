@@ -9,9 +9,9 @@ import (
 
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
-// Read 读取配置文件
-// 传入配置文件路径与接收结构体指针
-// 返回错误信息
+// Read the configuration file
+// Pass in the profile path with the receive struct pointer
+// An error message is returned
 func Read(path string, v interface{}) error {
 	data, err := os.ReadFile(path)
 	if err != nil {

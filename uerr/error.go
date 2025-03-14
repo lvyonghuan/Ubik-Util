@@ -5,8 +5,8 @@ import (
 )
 
 type UbikError struct {
-	errorMessage string //错误信息
-	stackInfo    string //调用堆栈
+	errorMessage string //error message
+	stackInfo    string //call stack
 }
 
 func NewError(err error) UbikError {

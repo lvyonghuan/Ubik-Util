@@ -8,9 +8,9 @@ import (
 )
 
 type Log struct {
-	Level       int        `json:"level"`    //日志等级
-	IsSave      bool       `json:"isSave"`   //是否保存日志
-	LogSavePath string     `json:"savePath"` //日志保存路径
+	Level       int        `json:"level"`     //log level
+	IsSave      bool       `json:"is_save"`   //whether to save logs
+	LogSavePath string     `json:"save_path"` //the path where the logs are saved
 	fileMutex   sync.Mutex //文件互斥访问
 }
 
@@ -33,7 +33,7 @@ const (
 	green  = "\033[32m"
 )
 
-// InitLog 启动时日志库初始化
+// InitLog init log
 func (l *Log) InitLog() {
 	if l.IsSave {
 		currentTime := time.Now().Format("_2006-01-02 15-04-05")
@@ -41,7 +41,7 @@ func (l *Log) InitLog() {
 	}
 }
 
-// Debug 打印debug级别日志
+// Debug print debug level logs
 func (l *Log) Debug(v string) {
 	if l.Level >= Debug {
 		logString := "Debug: " + v
@@ -50,7 +50,7 @@ func (l *Log) Debug(v string) {
 	}
 }
 
-// Info 打印info级别日志
+// Info print info level logs
 func (l *Log) Info(v string) {
 	if l.Level >= Info {
 		logString := v
@@ -59,7 +59,7 @@ func (l *Log) Info(v string) {
 	}
 }
 
-// Warn 打印warn级别日志
+// Warn print the warn level logs
 func (l *Log) Warn(v string) {
 	if l.Level >= Warn {
 		logString := "Warn: " + v
@@ -68,7 +68,7 @@ func (l *Log) Warn(v string) {
 	}
 }
 
-// Error 打印error级别日志
+// Error print the error level log
 func (l *Log) Error(v error) {
 	if l.Level >= Error {
 		logString := "Error: " + v.Error()
@@ -77,7 +77,7 @@ func (l *Log) Error(v error) {
 	}
 }
 
-// Fatal 打印fatal级别日志
+// Fatal print the fatal level logs
 func (l *Log) Fatal(v error) {
 	if l.Level >= Fatal {
 		logString := "Fatal: " + v.Error()
@@ -86,7 +86,7 @@ func (l *Log) Fatal(v error) {
 	}
 }
 
-// SaveLogToFile 保存日志到文件
+// SaveLogToFile save the log to a file
 func (l *Log) SaveLogToFile(v string) {
 	if l.IsSave {
 		l.fileMutex.Lock()
