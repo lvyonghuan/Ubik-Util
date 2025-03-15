@@ -1,5 +1,9 @@
 package uplugin
 
+import (
+	"github.com/lvyonghuan/Ubik-Util/uconfig"
+)
+
 type Plugin struct {
 	Name        string          `json:"name"`        //Name of the plugin
 	Description string          `json:"description"` //Description of the plugin
@@ -25,4 +29,14 @@ type Port struct {
 	//If the port is streaming
 	//Only when the output port and input port of the two nodes have the same streaming properties can they be connected
 	Streaming bool `json:"streaming"`
+}
+
+func ReadPluginInfo(path string) (*Plugin, error) {
+	var plugin Plugin
+	err := uconfig.Read(path, &plugin)
+	if err != nil {
+		return nil, err
+	}
+
+	return &plugin, nil
 }
