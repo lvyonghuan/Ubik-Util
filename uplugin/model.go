@@ -9,6 +9,8 @@ type Plugin struct {
 	Description string          `json:"description"` //Description of the plugin
 	Version     string          `json:"version"`     //Version of the plugin
 	Author      string          `json:"author"`      //Author of the plugin
+	Uri         string          `json:"uri"`         //Uri of the plugin, include port
+	Local       bool            `json:"local"`       //if the plugin is local or remote
 	Nodes       map[string]Node `json:"nodes"`       //Plugin node metadata. Key is the node name, value is the node metadata
 }
 
