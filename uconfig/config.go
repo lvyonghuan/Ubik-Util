@@ -3,14 +3,12 @@ package uconfig
 import (
 	"os"
 
-	jsoniter "github.com/json-iterator/go"
 	"github.com/lvyonghuan/Ubik-Util/uerr"
+	"github.com/lvyonghuan/Ubik-Util/ujson"
 )
 
-var json = jsoniter.ConfigCompatibleWithStandardLibrary
-
 // Read the configuration file
-// Pass in the profile path with the receive struct pointer
+// Pass in the profile path with the reception struct pointer
 // An error message is returned
 func Read(path string, v interface{}) error {
 	data, err := os.ReadFile(path)
@@ -18,9 +16,9 @@ func Read(path string, v interface{}) error {
 		return uerr.NewError(err)
 	}
 
-	err = json.Unmarshal(data, v)
+	err = ujson.Unmarshal(data, v)
 	if err != nil {
-		return uerr.NewError(err)
+		return err
 	}
 
 	return nil
