@@ -9,6 +9,7 @@
     "StartNode": {
       "info": "This is the beginning node of the workflow",
       "is_begin": true,
+      "is_special_begin": false,
       "input": {},
       "output": {
         "text": {

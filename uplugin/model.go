@@ -15,11 +15,22 @@ type Plugin struct {
 }
 
 type Node struct {
-	Info    string          `json:"info"`     //Description of the node
-	IsBegin bool            `json:"is_begin"` //begin node will be the first node to run
-	Input   map[string]Port `json:"input"`    //Input port metadata. Key is the port name, value is the port metadata
-	Output  map[string]Port `json:"output"`   //Output port metadata. Key is the port name, value is the port metadata
-	Params  map[string]Port `json:"params"`   //Parameter port metadata. Key is the port name, value is the port metadata
+	Info    string `json:"info"`     //Description of the node
+	IsBegin bool   `json:"is_begin"` //begin node will be the first batch of nodes to be executed in the task flow
+	//In directed task flow, usually, there should not be two begin nodes in a loop,
+	//because this will cause dependency disorder
+	//However, considering the special situation,
+	//if a node's partial output does not depend on the input of the predecessor node,
+	//it can still serve as the beginning node in the loop
+	//This node should be distinguished from the ordinary begin node, so this mark is used
+	//The scenario is usually initialization, informing the successor nodes of initialization information,
+	//such as how many devices are upstream, etc., to avoid manual configuration.
+	//This mark should not be abused
+	//Only effective when is_begin is true
+	IsSpecialBegin bool            `json:"is_special_begin"`
+	Input          map[string]Port `json:"input"`  //Input port metadata. Key is the port name, value is the port metadata
+	Output         map[string]Port `json:"output"` //Output port metadata. Key is the port name, value is the port metadata
+	Params         map[string]Port `json:"params"` //Parameter port metadata. Key is the port name, value is the port metadata
 }
 
 // Port represents input, output, or parameter port information
