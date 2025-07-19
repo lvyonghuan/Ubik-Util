@@ -1,6 +1,9 @@
 package umessenger
 
-import "github.com/lvyonghuan/Ubik-Util/uconst"
+import (
+	"github.com/lvyonghuan/Ubik-Util/uconst"
+	"github.com/lvyonghuan/Ubik-Util/ujson"
+)
 
 // Message categories
 const (
@@ -29,4 +32,13 @@ func (messenger *UMessenger) NewEnvelope(methods string, category int, flag stri
 		Flag:     flag,
 		Message:  message,
 	}
+}
+
+func UnmarshalEnvelope(data []byte) (UEnvelope, error) {
+	var envelope UEnvelope
+	err := ujson.Unmarshal(data, &envelope)
+	if err != nil {
+		return UEnvelope{}, err
+	}
+	return envelope, nil
 }

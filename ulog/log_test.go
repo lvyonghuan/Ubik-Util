@@ -38,6 +38,7 @@ func TestLogWithoutInitPrint(t *testing.T) {
 	l.Fatal(uerr.NewError(errors.New("test fatal")))
 }
 
+// Already tested in local
 func TestSendLog(t *testing.T) {
 	l := ulog.NewLogWithPost(5, false, "./", "http://localhost:24242", "1")
 	l.Debug("test debug")
