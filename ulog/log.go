@@ -27,6 +27,9 @@ type LogWithPost struct {
 	LogSavePath string     `json:"save_path"` //the path where the logs are saved
 	fileMutex   sync.Mutex // mutex for file operations
 
+	leaderAddr string // Address of the leader to send logs to
+	uuid       string // Unique identifier for the follower
+
 	messenger *umessenger.UMessenger //To send logs to the leader
 }
 
@@ -36,9 +39,11 @@ func NewLogWithPost(level int, isSave bool, logSavePath, leaderAddr, uuid string
 		Level:       level,
 		IsSave:      isSave,
 		LogSavePath: logSavePath,
+		leaderAddr:  leaderAddr,
+		uuid:        uuid,
 	}
 
-	logWithPost.InitLog(leaderAddr, uuid)
+	logWithPost.InitLog()
 	return logWithPost
 }
 
@@ -83,14 +88,14 @@ const (
 const leaderLogPath = "/follower/log/"
 
 // InitLog init log
-func (l *LogWithPost) InitLog(leaderAddr, uuid string) {
+func (l *LogWithPost) InitLog() {
 	if l.IsSave {
-		currentTime := time.Now().Format("_2006-01-02 15-04-05")
+		currentTime := time.Now().Format("2006-01-02_15-04-05")
 		l.LogSavePath = l.LogSavePath + currentTime + ".log"
 	}
 
 	// Initialize the messenger
-	l.messenger = umessenger.NewUMessenger(leaderAddr+leaderLogPath, uuid)
+	l.messenger = umessenger.NewUMessenger(l.leaderAddr+leaderLogPath, l.uuid)
 }
 
 // Debug print debug level logs
@@ -169,7 +174,7 @@ func (l *LogWithPost) SaveLogToFile(v string) {
 // InitLog init log
 func (l *LogWithoutPost) InitLog() {
 	if l.IsSave {
-		currentTime := time.Now().Format("_2006-01-02 15-04-05")
+		currentTime := time.Now().Format("2006-01-02_15-04-05")
 		l.LogSavePath = l.LogSavePath + currentTime + ".log"
 	}
 }
