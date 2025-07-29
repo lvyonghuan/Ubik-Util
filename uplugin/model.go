@@ -55,5 +55,5 @@ func ReadPluginInfo(path string) (*Plugin, error) {
 }
 
 // Params User-set parameters, this structure is used to pass parameters from the leader to the follower
-// Key is the parameter name, value is the parameter value. The value is a byte slice, which can be converted to the corresponding type
-type Params map[string][]byte
+// Key is the parameter name, value is the parameter value.
+type Params map[string]any
