@@ -9,8 +9,8 @@ import (
 
 func TestNewUbikError(t *testing.T) {
 	err := uerr.NewError(errors.New("an error occurred"))
-	if err.UbikErrorMessage() != "an error occurred" {
-		t.Errorf("expected 'An error occurred', got %s", err.UbikErrorMessage())
+	if err.MetaError().Error() != "an error occurred" {
+		t.Errorf("expected 'An error occurred', got %s", err.MetaError().Error())
 	}
 
 	t.Log(err.Error())

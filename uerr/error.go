@@ -5,8 +5,8 @@ import (
 )
 
 type UbikError struct {
-	errorMessage string //error message
-	stackInfo    string //call stack
+	err       error  //error message
+	stackInfo string //call stack
 }
 
 func NewError(err error) UbikError {
@@ -19,19 +19,19 @@ func NewError(err error) UbikError {
 	stack := string(stackBuf[:stackSize])
 
 	return UbikError{
-		errorMessage: err.Error(),
-		stackInfo:    stack,
+		err:       err,
+		stackInfo: stack,
 	}
 }
 
 func (err UbikError) Error() string {
-	return err.errorMessage + "\n" + err.stackInfo
+	return err.err.Error() + "\n" + err.stackInfo
 }
 
 func (err UbikError) Stack() string {
 	return err.stackInfo
 }
 
-func (err UbikError) UbikErrorMessage() string {
-	return err.errorMessage
+func (err UbikError) MetaError() error {
+	return err.err
 }
