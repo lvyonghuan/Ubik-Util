@@ -7,9 +7,14 @@ import (
 type UbikError struct {
 	err       error  //error message
 	stackInfo string //call stack
+	errorInfo string
 }
 
 func NewError(err error) UbikError {
+	return NewErrorWithInfo(err, "")
+}
+
+func NewErrorWithInfo(err error, info string) UbikError {
 	if err == nil {
 		return UbikError{}
 	}
@@ -21,6 +26,7 @@ func NewError(err error) UbikError {
 	return UbikError{
 		err:       err,
 		stackInfo: stack,
+		errorInfo: info,
 	}
 }
 
@@ -34,4 +40,8 @@ func (err UbikError) Stack() string {
 
 func (err UbikError) MetaError() error {
 	return err.err
+}
+
+func (err UbikError) Info() string {
+	return err.errorInfo
 }
