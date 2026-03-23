@@ -9,7 +9,7 @@ import (
 )
 
 func TestLogPrint(t *testing.T) {
-	l := ulog.NewULog(5, false, "./")
+	l := ulog.NewULog(5, 5, false, "./")
 	l.Debug("test debug")
 	l.Info("test info")
 	l.Warn("test warn")
@@ -18,7 +18,7 @@ func TestLogPrint(t *testing.T) {
 }
 
 func TestLogSave(t *testing.T) {
-	l := ulog.NewULog(5, true, "./")
+	l := ulog.NewULog(5, 5, true, "./")
 	l.Debug("test debug")
 	l.Info("test info")
 	l.Warn("test warn")
