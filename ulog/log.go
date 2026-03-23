@@ -20,9 +20,10 @@ type Log interface {
 }
 
 type ULog struct {
-	Level       int        `json:"level"`     //log level
-	IsSave      bool       `json:"is_save"`   //whether to save logs
-	LogSavePath string     `json:"save_path"` //the path where the logs are saved
+	Level       int        `json:"level"`       //log level
+	WriteLevel  int        `json:"write_level"` //the log level to be written to the file
+	IsSave      bool       `json:"is_save"`     //whether to save logs
+	LogSavePath string     `json:"save_path"`   //the path where the logs are saved
 	fileMutex   sync.Mutex // mutex for file operations
 }
 
@@ -67,45 +68,61 @@ func (l *ULog) InitLog() {
 
 // Debug print debug level logs
 func (l *ULog) Debug(v string) {
+	logString := "Debug: " + v
 	if l.Level >= Debug {
-		logString := "Debug: " + v
 		log.Println(green + logString + reset)
+	}
+
+	if l.WriteLevel >= Debug {
 		l.SaveLogToFile(logString)
 	}
 }
 
 // Info print info level logs
 func (l *ULog) Info(v string) {
+	logString := "Info: " + v
 	if l.Level >= Info {
-		logString := v
 		log.Println(logString)
+	}
+
+	if l.WriteLevel >= Info {
 		l.SaveLogToFile(logString)
 	}
 }
 
 // Warn print the warn level logs
 func (l *ULog) Warn(v string) {
+	logString := "Warn: " + v
 	if l.Level >= Warn {
-		logString := "Warn: " + v
 		log.Println(yellow + logString + reset)
+	}
+
+	if l.WriteLevel >= Warn {
 		l.SaveLogToFile(logString)
 	}
 }
 
 // Error print the error level log
 func (l *ULog) Error(v error) {
+	logString := "Error: " + v.Error()
+
 	if l.Level >= Error {
-		logString := "Error: " + v.Error()
 		log.Println(orange + logString + reset)
+	}
+
+	if l.WriteLevel >= Error {
 		l.SaveLogToFile(logString)
 	}
 }
 
 // Fatal print the fatal level logs
 func (l *ULog) Fatal(v error) {
+	logString := "Fatal: " + v.Error()
 	if l.Level >= Fatal {
-		logString := "Fatal: " + v.Error()
 		log.Println(red + logString + reset)
+	}
+
+	if l.WriteLevel >= Fatal {
 		l.SaveLogToFile(logString)
 	}
 }
