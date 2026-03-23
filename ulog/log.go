@@ -28,9 +28,10 @@ type ULog struct {
 }
 
 // NewULog creates a new ULog instance, initializes it, and returns it.
-func NewULog(level int, isSave bool, logSavePath string) *ULog {
+func NewULog(level int, writeLevel int, isSave bool, logSavePath string) *ULog {
 	ULog := &ULog{
 		Level:       level,
+		WriteLevel:  writeLevel,
 		IsSave:      isSave,
 		LogSavePath: logSavePath,
 	}
