@@ -16,6 +16,7 @@ type Log interface {
 	Warn(v string)
 	Error(v error)
 	Fatal(v error)
+	System(v string)
 	SaveLogToFile(v string)
 }
 
@@ -42,12 +43,12 @@ func NewULog(level int, writeLevel int, isSave bool, logSavePath string) *ULog {
 
 // log levels
 const (
-	Off   = 0
-	Fatal = uconst.Fatal
-	Error = uconst.Error
-	Warn  = uconst.Warn
-	Info  = uconst.Info //Default log level
-	Debug = uconst.Debug
+	System = uconst.System
+	Fatal  = uconst.Fatal
+	Error  = uconst.Error
+	Warn   = uconst.Warn
+	Info   = uconst.Info //Default log level
+	Debug  = uconst.Debug
 )
 
 // log colors
@@ -126,6 +127,18 @@ func (l *ULog) Fatal(v error) {
 	if l.WriteLevel >= Fatal {
 		l.SaveLogToFile(logString)
 	}
+}
+
+// System print the system level logs
+func (l *ULog) System(v string) {
+	logString := "System: " + v
+	if l.Level >= System {
+		log.Println(logString)
+	}
+
+	//if l.WriteLevel >= System {
+	//	l.SaveLogToFile(logString)
+	//}
 }
 
 // SaveLogToFile save the log to a file

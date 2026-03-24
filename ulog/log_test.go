@@ -15,6 +15,7 @@ func TestLogPrint(t *testing.T) {
 	l.Warn("test warn")
 	l.Error(uerr.NewError(errors.New("test error")))
 	l.Fatal(uerr.NewError(errors.New("test fatal")))
+	l.System("test system")
 }
 
 func TestLogSave(t *testing.T) {
