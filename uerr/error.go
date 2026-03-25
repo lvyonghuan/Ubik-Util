@@ -1,6 +1,7 @@
 package uerr
 
 import (
+	"errors"
 	"runtime"
 )
 
@@ -44,4 +45,17 @@ func (err UbikError) MetaError() error {
 
 func (err UbikError) Info() string {
 	return err.errorInfo
+}
+
+func ExtractError(err error) error {
+	if err == nil {
+		return nil
+	}
+
+	var ubikErr UbikError
+	if errors.As(err, &ubikErr) {
+		return ubikErr
+	}
+
+	return err
 }
